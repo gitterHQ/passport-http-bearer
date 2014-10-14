@@ -1,7 +1,7 @@
 {
-  "name": "passport-http-bearer",
+  "name": "gitter-passport-http-bearer",
   "version": "1.0.1",
-  "description": "HTTP Bearer authentication strategy for Passport.",
+  "description": "HTTP Bearer authentication strategy for Passport - forked by Gitter.",
   "keywords": [
     "passport",
     "auth",
@@ -16,10 +16,10 @@
   ],
   "repository": {
     "type": "git",
-    "url": "git://github.com/jaredhanson/passport-http-bearer.git"
+    "url": "git://github.com/gitterHQ/passport-http-bearer.git"
   },
   "bugs": {
-    "url": "http://github.com/jaredhanson/passport-http-bearer/issues"
+    "url": "http://github.com/gitterHQ/passport-http-bearer/issues"
   },
   "author": {
     "name": "Jared Hanson",

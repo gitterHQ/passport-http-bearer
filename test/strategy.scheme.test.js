@@ -3,18 +3,18 @@ var chai = require('chai')
 
 
 describe('Strategy', function() {
-    
+
   var strategy = new Strategy(function(token, done) {
-    if (token == 'vF9dft4qmT') { 
+    if (token == 'vF9dft4qmT') {
       return done(null, { id: '1234' }, { scope: 'read' });
     }
     return done(null, false);
   });
-  
+
   describe('handling a request with capitalized scheme', function() {
     var user
       , info;
-    
+
     before(function(done) {
       chai.passport(strategy)
         .success(function(u, i) {
@@ -27,21 +27,21 @@ describe('Strategy', function() {
         })
         .authenticate();
     });
-    
+
     it('should supply user', function() {
       expect(user).to.be.an.object;
       expect(user.id).to.equal('1234');
     });
-    
+
     it('should supply info', function() {
       expect(info).to.be.an.object;
       expect(info.scope).to.equal('read');
     });
   });
-  
+
   describe('handling a request with scheme at beginning of input', function() {
     var challenge;
-    
+
     before(function(done) {
       chai.passport(strategy)
         .fail(function(c) {
@@ -53,16 +53,16 @@ describe('Strategy', function() {
         })
         .authenticate();
     });
-    
+
     it('should fail with challenge', function() {
-      expect(challenge).to.be.a.string;
-      expect(challenge).to.equal('Bearer realm="Users"');
+      expect(challenge).to.be.a.number;
+      expect(challenge).to.equal(401);
     });
   });
-  
+
   describe('handling a request with scheme at end of input', function() {
     var challenge;
-    
+
     before(function(done) {
       chai.passport(strategy)
         .fail(function(c) {
@@ -74,16 +74,16 @@ describe('Strategy', function() {
         })
         .authenticate();
     });
-    
+
     it('should fail with challenge', function() {
-      expect(challenge).to.be.a.string;
-      expect(challenge).to.equal('Bearer realm="Users"');
+      expect(challenge).to.be.a.number;
+      expect(challenge).to.equal(401);
     });
   });
-  
+
   describe('handling a request with non-Bearer credentials', function() {
     var challenge;
-    
+
     before(function(done) {
       chai.passport(strategy)
         .fail(function(c) {
@@ -95,11 +95,11 @@ describe('Strategy', function() {
         })
         .authenticate();
     });
-    
+
     it('should fail with challenge', function() {
-      expect(challenge).to.be.a.string;
-      expect(challenge).to.equal('Bearer realm="Users"');
+      expect(challenge).to.be.a.number;
+      expect(challenge).to.equal(401);
     });
   });
-  
+
 });
