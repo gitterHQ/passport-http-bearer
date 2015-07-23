@@ -109,4 +109,34 @@ describe('Strategy', function() {
     });
   });
 
+  describe('handling a request with token included in more than one way if the tokens are equal', function() {
+    var user
+      , info;
+
+    before(function(done) {
+      chai.passport(strategy)
+        .success(function(u, i) {
+          user = u;
+          info = i;
+          done();
+        })
+        .req(function(req) {
+          req.headers.authorization = 'BEARER vF9dft4qmT';
+          req.query = {};
+          req.query.access_token = "vF9dft4qmT";
+        })
+        .authenticate();
+    });
+
+
+    it('should supply user', function() {
+      expect(user).to.be.an.object;
+      expect(user.id).to.equal('1234');
+    });
+
+    it('should supply info', function() {
+      expect(info).to.be.an.object;
+      expect(info.scope).to.equal('read');
+    });
+  });
 });
