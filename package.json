@@ -1,6 +1,6 @@
 {
   "name": "gitter-passport-http-bearer",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "HTTP Bearer authentication strategy for Passport - forked by Gitter.",
   "keywords": [
     "passport",
@@ -51,7 +51,7 @@
     "browsers": [
       "chrome/latest"
     ],
-    "harness" : "mocha",
+    "harness": "mocha",
     "files": [
       "test/bootstrap/testling.js",
       "test/*.test.js"
